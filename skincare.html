@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fff8f6;
+      margin: 0;
+      padding: 30px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #4a4a4a;
+    }
+
+    form {
+      background: #fff;
+      padding: 40px 35px;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(255, 192, 203, 0.3);
+      max-width: 480px;
+      width: 100%;
+      border: 1.5px solid #f7d1d8;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 2.4rem;
+      text-align: center;
+      color: #d57a8a;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #a87d8c;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+    }
+
+    select {
+      width: 100%;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      border: 1.8px solid #f1b9c9;
+      font-size: 1rem;
+      color: #5a3f49;
+      background-color: #fff6f8;
+      transition: 0.3s ease;
+    }
+
+    select:focus {
+      border-color: #d57a8a;
+      outline: none;
+      box-shadow: 0 0 8px rgba(213, 122, 138, 0.5);
+      background-color: #fff;
+    }
+
+    .checkbox-group {
+      margin-bottom: 24px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #5a3f49;
+      margin-bottom: 10px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #d57a8a;
+      cursor: pointer;
+    }
+
+    button {
+      background: #d57a8a;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 16px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.3s ease;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 5px 15px rgba(213, 122, 138, 0.6);
+    }
+
+    button:hover {
+      background: #b75d68;
+      box-shadow: 0 8px 20px rgba(183, 93, 104, 0.8);
+    }
+
+    .help-link {
+      text-align: center;
+      margin-top: 35px;
+      font-size: 0.9rem;
+    }
+
+    .help-link a {
+      color: #cfa4ab;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .help-link a:hover {
+      color: #a87d8c;
+      text-decoration: underline;
+    }
+
+    /* ⭐ NUEVO ESTILO PARA PRODUCTOS ⭐ */
+
+    .productos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+      margin-bottom: 25px;
+      justify-content: center;
+    }
+
+    .producto {
+      width: 120px;
+      text-align: center;
+      text-decoration: none;
+      color: #5a3f49;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .producto img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: .2s ease;
+    }
+
+    .producto img:hover {
+      transform: scale(1.05);
+    }
+
+    .producto span {
+      display: block;
+      margin-top: 6px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<form id="formSkincare">
+  <h2>Formulario Skincare</h2>
+
+  <div class="checkbox-group">
+    <label>Tipo de piel</label>
+    <label><input type="checkbox" name="tipoPiel[]" value="seca" /> Seca</label>
+    <label><input type="checkbox" name="tipoPiel[]" value="mixta" /> Mixta</label>
+    <label><input type="checkbox" name="tipoPiel[]" value="grasa" /> Grasa</label>
+    <label><input type="checkbox" name="tipoPiel[]" value="sensible" /> Sensible</label>
+    <label><input type="checkbox" name="tipoPiel[]" value="normal" /> Normal</label>
+    <label><input type="checkbox" name="tipoPiel[]" value="atopica" /> Atópica</label>
+    <label><input type="checkbox" name="tipoPiel[]" value="madura" /> Madura</label>
+  </div>
+
+  <div class="checkbox-group">
+    <label>Problemas principales</label>
+    <label><input type="checkbox" name="problemas[]" value="acne"> Acné</label>
+    <label><input type="checkbox" name="problemas[]" value="rojeces"> Rojeces</label>
+    <label><input type="checkbox" name="problemas[]" value="deshidratacion"> Deshidratación</label>
+    <label><input type="checkbox" name="problemas[]" value="arrugas"> Arrugas</label>
+    <label><input type="checkbox" name="problemas[]" value="manchas"> Manchas / pigmentación</label>
+    <label><input type="checkbox" name="problemas[]" value="sensibilidad"> Sensibilidad extrema / alergias</label>
+    <label><input type="checkbox" name="problemas[]" value="poros"> Poros dilatados</label>
+    <label><input type="checkbox" name="problemas[]" value="congestion"> Piel congestionada</label>
+    <label><input type="checkbox" name="problemas[]" value="luminosidad"> Piel apagada / falta de luminosidad</label>
+    <label><input type="checkbox" name="problemas[]" value="ninguno"> Ninguno</label>
+  </div>
+
+  <label for="presupuesto">Presupuesto</label>
+  <select id="presupuesto" name="presupuesto" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="Bajo">Bajo</option>
+    <option value="Medio">Medio</option>
+    <option value="Alto">Alto</option>
+  </select>
+
+  <button type="submit">Ver recomendaciones</button>
+
+  <div class="help-link">
+    <a href="formulario_ayuda.html">
+      ¿No estás seguro de tu tipo de piel o problemas? Descubre más aquí.
+    </a>
+  </div>
+
+  <div id="rutinaRecomendada" style="margin-top: 40px;"></div>
+
+</form>
+
+<script src="rutinas.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

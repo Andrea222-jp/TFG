@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inicio - Proyecto Skincare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', Georgia, 'Times New Roman', Times, serif;
+    }
+    body, .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: row;
+    }
+    .container {
+      width: 100%;
+    }
+    .image-block {
+      flex: 1;
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 20px;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+      text-decoration: none;
+    }
+    .image-block:hover {
+      transform: scale(1.05);
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="skincare.html" class="image-block" style="background-image: url('img/skincare3.jpg');">
+      Skincare
+    </a>
+    <a href="piel.html" class="image-block" style="background-image: url('img/cuidadoCorporal2.jpg');">
+      Piel
+    </a>
+    <a href="pelo.html" class="image-block" style="background-image: url('img/cabello2.jpg');">
+      Pelo
+    </a>
+  </div>
+</body>
+</html>

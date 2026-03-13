@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayuda para descubrir tu piel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fff8f6;
+      margin: 0;
+      padding: 30px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      color: #4a4a4a;
+    }
+
+    form {
+      background: #fff;
+      padding: 40px 35px;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(255, 192, 203, 0.3);
+      max-width: 480px;
+      width: 100%;
+      border: 1.5px solid #f7d1d8;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 2.4rem;
+      text-align: center;
+      color: #d57a8a;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #a87d8c;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    select, input[type="radio"], input[type="checkbox"] {
+      margin-top: 8px;
+      cursor: pointer;
+    }
+
+    .radio-group, .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    button {
+      background: #d57a8a;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 16px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 5px 15px rgba(213, 122, 138, 0.6);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    button:hover {
+      background: #b75d68;
+      box-shadow: 0 8px 20px rgba(183, 93, 104, 0.8);
+    }
+
+    /* Estilo para el resumen */
+    #resumen {
+      max-width: 480px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 30px 25px;
+      box-shadow: 0 8px 25px rgba(255, 192, 203, 0.3);
+      border: 1.5px solid #f7d1d8;
+      font-size: 1rem;
+      color: #5a3f49;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    #resumen h3 {
+      color: #d57a8a;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <form id="formAyuda">
+    <h2>¿No sabes tu tipo de piel?</h2>
+
+    <div class="section checkbox-group">
+      <label>Tipo de piel (puedes seleccionar más de uno)</label>
+      <label><input type="checkbox" name="tipoPiel" value="seca" /> Seca</label>
+      <label><input type="checkbox" name="tipoPiel" value="mixta" /> Mixta</label>
+      <label><input type="checkbox" name="tipoPiel" value="grasa" /> Grasa</label>
+      <label><input type="checkbox" name="tipoPiel" value="sensible" /> Sensible</label>
+      <label><input type="checkbox" name="tipoPiel" value="normal" /> Normal</label>
+    </div>
+
+    <div class="section">
+      <label>¿Tu piel se enrojece o irrita fácilmente?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="sensibilidad" value="alta" required> Sí, mucho</label>
+        <label><input type="radio" name="sensibilidad" value="media"> A veces</label>
+        <label><input type="radio" name="sensibilidad" value="baja"> No, casi nunca</label>
+      </div>
+    </div>
+
+    <div class="section checkbox-group">
+      <label>¿Cuáles de estos problemas notas en tu piel? (puedes seleccionar más de uno)</label>
+      <label><input type="checkbox" name="problemas" value="acne"> Acné</label>
+      <label><input type="checkbox" name="problemas" value="rojeces"> Rojeces</label>
+      <label><input type="checkbox" name="problemas" value="deshidratacion"> Deshidratación</label>
+      <label><input type="checkbox" name="problemas" value="arrugas"> Arrugas</label>
+      <label><input type="checkbox" name="problemas" value="barrera_danada"> Barrera cutánea dañada</label>
+      <label><input type="checkbox" name="problemas" value="hiperpigmentacion"> Hiperpigmentación</label>
+      <label><input type="checkbox" name="problemas" value="Poros"> Poros visibles</label>
+      <label><input type="checkbox" name="problemas" value="ninguno"> Ninguno</label>
+    </div>
+
+    <div class="section">
+      <label>¿Con qué frecuencia notas que tu piel brilla o se engrasa durante el día?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="brillo" value="todo el dia" required> Todo el día</label>
+        <label><input type="radio" name="brillo" value="piel mixta"> A veces en la frente, nariz, barbilla comforme pasan las horas</label>
+        <label><input type="radio" name="brillo" value="poco"> Poco o nada</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>¿Tu piel se siente tirante o seca después de lavarla?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="tirantez" value="si" required> Sí, a menudo</label>
+        <label><input type="radio" name="tirantez" value="no"> No, casi nunca</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>¿Has notado alguna reacción alérgica o irritación con productos para la piel?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="alergias" value="si" required> Sí</label>
+        <label><input type="radio" name="alergias" value="no"> No</label>
+      </div>
+    </div>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div id="resumen" style="display:none;">
+    <h3>Resumen de tu piel</h3>
+    <p id="resumen-text"></p>
+  </div>
+
+  <script>
+    document.getElementById('formAyuda').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Recoger respuestas
+      const form = e.target;
+      const tipoPielChecked = Array.from(form.querySelectorAll('input[name="tipoPiel"]:checked')).map(cb => cb.value);
+      const sensibilidad = form.sensibilidad.value;
+      const brillo = form.brillo.value;
+      const tirantez = form.tirantez.value;
+      const alergias = form.alergias.value;
+
+      const problemasChecked = Array.from(form.querySelectorAll('input[name="problemas"]:checked')).map(cb => cb.value);
+
+      // Crear texto para mostrar
+      let textoResumen = `Tipo(s) de piel: ${tipoPielChecked.length > 0 ? tipoPielChecked.join(', ') : 'No seleccionado'}.<br>`;
+      textoResumen += `Sensibilidad: ${sensibilidad}.<br>`;
+      textoResumen += `Problemas principales: ${problemasChecked.length > 0 ? problemasChecked.join(', ') : 'Ninguno'}.<br>`;
+      textoResumen += `Frecuencia de brillo: ${brillo}.<br>`;
+      textoResumen += `¿Se siente tirante después de lavar?: ${tirantez}.<br>`;
+      textoResumen += `Reacciones alérgicas o irritaciones: ${alergias}.`;
+
+      // Mostrar resumen
+      document.getElementById('resumen-text').innerHTML = textoResumen;
+      document.getElementById('resumen').style.display = 'block';
+
+      // Scroll al resumen
+      document.getElementById('resumen').scrollIntoView({behavior: 'smooth'});
+    });
+  </script>
+</body>
+</html>
