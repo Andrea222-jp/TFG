@@ -164,6 +164,52 @@
       margin-top: 6px;
     }
 
+    .botones {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* 💥 separación limpia */
+  margin-top: 10px;
+}
+
+.radio-group {
+  margin-bottom: 24px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #5a3f49;
+  margin-bottom: 10px;
+}
+
+.radio-group input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #d57a8a;
+  cursor: pointer;
+}
+
+.btn-secundario {
+  background: #f8b5c8;
+  color: white;
+  padding: 14px;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: 0.3s ease;
+  box-shadow: 0 5px 15px rgba(241, 185, 201, 0.6);
+}
+
+.btn-secundario:hover {
+  background: #d57a8a;
+  box-shadow: 0 8px 20px rgba(213, 122, 138, 0.8);
+}
   </style>
 </head>
 
@@ -172,15 +218,14 @@
 <form id="formSkincare">
   <h2>Formulario Skincare</h2>
 
-  <div class="checkbox-group">
+  <div class="radio-group">
     <label>Tipo de piel</label>
-    <label><input type="checkbox" name="tipoPiel[]" value="seca" /> Seca</label>
-    <label><input type="checkbox" name="tipoPiel[]" value="mixta" /> Mixta</label>
-    <label><input type="checkbox" name="tipoPiel[]" value="grasa" /> Grasa</label>
-    <label><input type="checkbox" name="tipoPiel[]" value="sensible" /> Sensible</label>
-    <label><input type="checkbox" name="tipoPiel[]" value="normal" /> Normal</label>
-    <label><input type="checkbox" name="tipoPiel[]" value="atopica" /> Atópica</label>
-    <label><input type="checkbox" name="tipoPiel[]" value="madura" /> Madura</label>
+    <label><input type="radio" name="tipoPiel" value="seca" required> Seca</label>
+    <label><input type="radio" name="tipoPiel" value="mixta"> Mixta</label>
+    <label><input type="radio" name="tipoPiel" value="grasa"> Grasa</label>
+    <label><input type="radio" name="tipoPiel" value="sensible"> Sensible</label>
+    <label><input type="radio" name="tipoPiel" value="normal"> Normal</label>
+    <label><input type="radio" name="tipoPiel" value="madura"> Madura</label>
   </div>
 
   <div class="checkbox-group">
@@ -205,7 +250,19 @@
     <option value="Alto">Alto</option>
   </select>
 
+  <div class="botones">
   <button type="submit">Ver recomendaciones</button>
+  <button type="button" onclick="guardarDatos()">Guardar rutina</button>
+
+  <a href="misRutinas.html" class="btn-secundario">
+    💾 Mis rutinas
+  </a>
+
+  <!-- 💥 NUEVO BOTÓN -->
+  <a href="estadisticas.html" class="btn-secundario">
+    🔥 Rutinas populares
+  </a>
+</div>
 
   <div class="help-link">
     <a href="formulario_ayuda.html">
