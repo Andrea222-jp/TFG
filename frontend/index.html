@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkinMatch - Inicio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+--primary:#c9788c;
+--primary-hover:#b8677a;
+--soft:#f8e8ed;
+
+--bg:#fffaf8;
+--white:#ffffff;
+--text:#242424;
+--muted:#6b6b6b;
+
+--card:#ffffff;
+}
+
+.dark{
+--bg:#121212;
+--white:#1e1e1e;
+--text:#f5f5f5;
+--muted:#c8c8c8;
+--soft:#242424;
+--card:#2a2a2a;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Manrope',sans-serif;
+color:var(--text);
+overflow-x:hidden;
+background:
+radial-gradient(circle at top right,#ffeef2 0%, transparent 35%),
+radial-gradient(circle at bottom left,#fff1f4 0%, transparent 35%),
+var(--bg);
+}
+
+/* BOTON DARK */
+.dark-toggle{
+position:fixed;
+top:20px;
+right:20px;
+z-index:999;
+}
+
+#toggleDark{
+width:52px;
+height:52px;
+border:none;
+border-radius:50%;
+background:rgba(255,255,255,.85);
+backdrop-filter:blur(10px);
+
+font-size:1.2rem;
+cursor:pointer;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.3s ease;
+}
+
+#toggleDark:hover{
+transform:translateY(-3px) scale(1.05);
+}
+
+.dark #toggleDark{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+color:white;
+border:1px solid rgba(255,255,255,.1);
+}
+
+/* HERO */
+.header{
+width:100%;
+height:65vh;
+background:
+linear-gradient(to bottom, rgba(255,255,255,.08), rgba(255,255,255,.18)),
+url("img/SkinMatch.png") center/cover no-repeat;
+transition:.3s;
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.dark .header{
+filter:brightness(.7);
+}
+
+.header::after{
+content:"";
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:130px;
+background:linear-gradient(to top,var(--bg),transparent);
+}
+
+/* CONTENIDO */
+.contenido{
+max-width:980px;
+margin:auto;
+padding:70px 25px 90px;
+text-align:center;
+animation:fadeUp 1s ease;
+}
+
+.badge{
+display:inline-block;
+padding:11px 20px;
+border-radius:999px;
+background:rgba(255,255,255,.8);
+backdrop-filter:blur(10px);
+color:var(--primary);
+font-size:.82rem;
+font-weight:800;
+letter-spacing:.6px;
+box-shadow:0 10px 30px rgba(201,120,140,.12);
+margin-bottom:24px;
+}
+
+h2{
+font-size:3.4rem;
+line-height:1.05;
+font-weight:800;
+letter-spacing:-1.5px;
+color:var(--text);
+margin-bottom:22px;
+}
+
+h2 span{
+color:var(--primary);
+}
+
+p{
+max-width:730px;
+margin:0 auto 18px;
+font-size:1.08rem;
+line-height:1.9;
+color:var(--muted);
+font-weight:500;
+}
+
+/* BOTONES */
+.botones{
+margin-top:38px;
+display:flex;
+justify-content:center;
+gap:16px;
+flex-wrap:wrap;
+}
+
+.btn,
+.btn2{
+padding:17px 30px;
+border-radius:999px;
+text-decoration:none;
+font-weight:800;
+font-size:1rem;
+transition:.3s ease;
+min-width:230px;
+}
+
+.btn{
+background:linear-gradient(135deg,var(--primary),#e294a7);
+color:white;
+box-shadow:0 14px 28px rgba(201,120,140,.25);
+}
+
+.btn:hover{
+transform:translateY(-5px) scale(1.03);
+box-shadow:0 20px 35px rgba(201,120,140,.35);
+}
+
+.btn2{
+background:white;
+color:var(--primary);
+border:1px solid #f2d3db;
+box-shadow:0 12px 24px rgba(0,0,0,.05);
+}
+
+.btn2:hover{
+transform:translateY(-5px);
+background:#fff7f9;
+}
+
+/* TRUST */
+.stats{
+display:flex;
+justify-content:center;
+gap:35px;
+flex-wrap:wrap;
+margin-top:40px;
+margin-bottom:65px;
+}
+
+.stat{
+font-size:.95rem;
+font-weight:700;
+color:var(--muted);
+}
+
+/* CARRUSEL */
+.carousel-title{
+font-size:1.2rem;
+font-weight:800;
+color:var(--primary);
+margin-bottom:24px;
+}
+
+.carousel{
+overflow:hidden;
+mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);
+-webkit-mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent);
+}
+
+.carousel-track{
+display:flex;
+gap:22px;
+width:max-content;
+animation:scroll 22s linear infinite;
+}
+
+.carousel:hover .carousel-track{
+animation-play-state:paused;
+}
+
+.carousel img{
+width:230px;
+height:230px;
+object-fit:cover;
+border-radius:28px;
+box-shadow:0 18px 35px rgba(0,0,0,.08);
+transition:.35s ease;
+flex-shrink:0;
+}
+
+.carousel img:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:0 24px 40px rgba(201,120,140,.18);
+filter:saturate(1.05);
+}
+
+/* ANIMACIONES */
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+.header{
+height:44vh;
+}
+
+.contenido{
+padding:50px 20px 70px;
+}
+
+h2{
+font-size:2.35rem;
+line-height:1.15;
+}
+
+p{
+font-size:1rem;
+}
+
+.botones{
+flex-direction:column;
+align-items:center;
+}
+
+.btn,.btn2{
+width:100%;
+max-width:320px;
+}
+
+.stats{
+gap:16px;
+flex-direction:column;
+margin-top:30px;
+}
+
+.carousel img{
+width:170px;
+height:170px;
+}
+
+/* DARK MODE */
+.dark body{
+background:
+radial-gradient(circle at top right,#2b1d22 0%, transparent 35%),
+radial-gradient(circle at bottom left,#1f1f1f 0%, transparent 35%),
+#121212;
+}
+
+.dark .header::after{
+background:linear-gradient(to top,#121212,transparent);
+}
+
+.dark .btn2{
+background:#2a2a2a;
+color:white;
+border-color:#3a3a3a;
+}
+
+.dark .badge{
+background:rgba(40,40,40,.85);
+color:#ffb6c7;
+}
+
+.dark .carousel img{
+box-shadow:0 18px 35px rgba(0,0,0,.35);
+}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header"></header>
+
+<div class="dark-toggle">
+<button id="toggleDark">🌙</button>
+</div>
+
+<section class="contenido">
+
+<span class="badge">✨ IA + SKINCARE PERSONALIZADO</span>
+
+<h2>Encuentra la rutina <span>ideal</span> para tu piel</h2>
+
+<p>
+SkinMatch analiza tu tipo de piel, necesidades y presupuesto para recomendarte productos y rutinas personalizadas en segundos.
+</p>
+
+<p>
+Una forma moderna, rápida y visual de cuidar tu piel sin complicaciones.
+</p>
+
+<div class="botones">
+<a href="login.html" class="btn">Empezar ahora</a>
+<a href="estadisticas.html" class="btn2">🔥 Rutinas populares</a>
+</div>
+
+
+<div class="stats">
+<div class="stat">+500 rutinas creadas</div>
+<div class="stat">Resultados en segundos</div>
+<div class="stat">Recomendaciones inteligentes</div>
+</div>
+
+<h3 class="carousel-title">Favoritos de la comunidad</h3>
+
+<div class="carousel">
+<div class="carousel-track">
+
+<img src="img/dos.jpg">
+<img src="img/uno.jpg">
+<img src="img/tres.jpg">
+<img src="img/cuatro.jpg">
+
+<img src="img/dos.jpg">
+<img src="img/uno.jpg">
+<img src="img/tres.jpg">
+<img src="img/cuatro.jpg">
+
+</div>
+</div>
+
+</section>
+<script>
+
+const btnDark = document.getElementById("toggleDark");
+
+btnDark.addEventListener("click", () => {
+
+document.body.classList.toggle("dark");
+
+if(document.body.classList.contains("dark")){
+localStorage.setItem("modo","oscuro");
+}else{
+localStorage.setItem("modo","claro");
+}
+
+});
+
+// mantener modo
+if(localStorage.getItem("modo") === "oscuro"){
+document.body.classList.add("dark");
+}
+
+</script>
+
+</body>
+</html>

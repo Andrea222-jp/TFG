@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkinMatch</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+  /* =========================
+MODO OSCURO
+========================= */
+
+body.dark{
+background:#121212;
+}
+
+/* overlay más oscuro sobre el video */
+.dark .hero::before{
+background:
+linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.55)),
+radial-gradient(circle at top left, rgba(255,120,160,.08), transparent 35%),
+radial-gradient(circle at bottom right, rgba(255,255,255,.04), transparent 35%);
+}
+
+/* glow oscuro */
+.dark .hero::after{
+background:rgba(255,255,255,.04);
+}
+
+/* caja principal */
+.dark .hero-box{
+background:rgba(25,25,25,.28);
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+0 25px 60px rgba(0,0,0,.35),
+0 8px 25px rgba(255,255,255,.03);
+}
+
+/* badge */
+.dark .badge{
+background:rgba(255,255,255,.08);
+color:#ffb6c7;
+}
+
+/* texto */
+.dark h1{
+color:white;
+}
+
+.dark p{
+color:rgba(255,255,255,.88);
+}
+
+/* botón secundario */
+.dark .btn-secundario{
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.16);
+color:white;
+}
+
+.dark .btn-secundario:hover{
+background:rgba(255,255,255,.14);
+}
+
+/* volver */
+.dark .scroll-indicator a{
+color:white;
+}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+height:100%;
+}
+
+body{
+font-family:'Manrope',sans-serif;
+overflow:hidden;
+background:#fffaf8;
+}
+
+/* HERO */
+.hero{
+position:relative;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:24px;
+overflow:hidden;
+}
+
+/* VIDEO */
+.bg-video{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:0;
+animation:zoomVideo 16s ease-in-out infinite alternate;
+}
+
+/* OVERLAY */
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(rgba(0,0,0,.38),rgba(0,0,0,.28)),
+radial-gradient(circle at top left, rgba(255,230,238,.10), transparent 35%),
+radial-gradient(circle at bottom right, rgba(255,240,245,.08), transparent 35%);
+z-index:1;
+}
+
+/* GLOW */
+.hero::after{
+content:"";
+position:absolute;
+width:340px;
+height:340px;
+border-radius:50%;
+background:rgba(255,255,255,.08);
+filter:blur(95px);
+top:8%;
+right:10%;
+z-index:1;
+animation:floatGlow 8s ease-in-out infinite;
+}
+
+/* CAJA */
+.hero-box{
+position:relative;
+z-index:2;
+width:100%;
+max-width:760px;
+padding:54px 42px;
+text-align:center;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.25);
+border-radius:36px;
+box-shadow:
+0 25px 60px rgba(0,0,0,.18),
+0 8px 25px rgba(255,255,255,.08);
+animation:fadeUp 1s ease;
+}
+
+/* BADGE */
+.badge{
+display:inline-block;
+padding:10px 18px;
+border-radius:999px;
+background:rgba(255,255,255,.94);
+color:#c9788c;
+font-size:.8rem;
+font-weight:800;
+margin-bottom:24px;
+}
+
+/* TITULO */
+h1{
+font-size:4.3rem;
+line-height:1.02;
+font-weight:800;
+letter-spacing:-2px;
+color:white;
+margin-bottom:20px;
+text-shadow:0 8px 24px rgba(0,0,0,.45);
+}
+
+h1 span{
+color:#ffd6e4;
+}
+
+/* TEXTO */
+p{
+max-width:590px;
+margin:0 auto 34px;
+font-size:1.08rem;
+line-height:1.8;
+color:rgba(255,255,255,.98);
+font-weight:500;
+}
+
+/* BOTONES */
+.botones{
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:17px 30px;
+border-radius:999px;
+font-size:1rem;
+font-weight:800;
+text-decoration:none;
+transition:.3s ease;
+min-width:220px;
+}
+
+.btn-principal{
+  background:linear-gradient(135deg,hwb(345 47% 21%),#e191a4);
+  color:white;
+  box-shadow:0 16px 30px rgba(201,120,140,.24);
+
+  position:relative;
+  overflow:hidden;
+}
+
+.btn-principal::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.5),
+    transparent
+  );
+
+  transition:0.6s;
+}
+
+.btn-principal:hover::before{
+  left:100%;
+}
+
+
+.btn-principal:hover{
+transform:translateY(-5px) scale(1.03);
+}
+
+.btn-secundario{
+background:rgba(255,255,255,.18);
+color:white;
+border:1px solid rgba(255,255,255,.34);
+}
+
+.btn-secundario:hover{
+transform:translateY(-5px);
+background:rgba(255,255,255,.28);
+}
+
+/* VOLVER */
+.scroll-indicator{
+position:absolute;
+bottom:28px;
+left:50%;
+transform:translateX(-50%);
+z-index:2;
+animation:bounce 2s infinite;
+}
+
+.scroll-indicator a{
+color:white;
+text-decoration:none;
+font-size:.95rem;
+font-weight:800;
+opacity:.95;
+text-shadow:0 4px 12px rgba(0,0,0,.35);
+transition:.25s;
+}
+
+.scroll-indicator a:hover{
+opacity:1;
+color:#ffd6e4;
+}
+
+/* BOTON DARK */
+
+.dark-toggle{
+position:fixed;
+top:20px;
+right:20px;
+z-index:999;
+}
+
+#toggleDark{
+width:54px;
+height:54px;
+border:none;
+border-radius:50%;
+
+background:rgba(255,255,255,.85);
+backdrop-filter:blur(12px);
+
+font-size:1.2rem;
+cursor:pointer;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.3s;
+}
+
+#toggleDark:hover{
+transform:translateY(-3px) scale(1.05);
+}
+
+.dark #toggleDark{
+background:rgba(255,255,255,.08);
+color:white;
+border:1px solid rgba(255,255,255,.08);
+}
+
+/* ANIMACIONES */
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(25px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes floatGlow{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-18px);}
+}
+
+@keyframes bounce{
+0%,20%,50%,80%,100%{
+transform:translate(-50%,0);
+}
+40%{
+transform:translate(-50%,-8px);
+}
+60%{
+transform:translate(-50%,-4px);
+}
+}
+
+@keyframes zoomVideo{
+from{transform:scale(1);}
+to{transform:scale(1.06);}
+}
+
+/* RESPONSIVE */
+@media(max-width:760px){
+
+.hero-box{
+padding:34px 22px;
+border-radius:28px;
+}
+
+h1{
+font-size:2.7rem;
+letter-spacing:-1px;
+}
+
+p{
+font-size:1rem;
+line-height:1.7;
+}
+
+.botones{
+flex-direction:column;
+}
+
+.btn{
+width:100%;
+min-width:auto;
+}
+
+}
+
+@media(max-width:500px){
+
+h1{
+font-size:2.25rem;
+}
+
+.badge{
+font-size:.72rem;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="dark-toggle">
+<button id="toggleDark">🌙</button>
+</div>
+
+<section class="hero">
+
+<video autoplay muted loop playsinline class="bg-video">
+<source src="video/videoPortada.mp4" type="video/mp4">
+</video>
+
+<div class="hero-box">
+
+<div class="badge">✨ SKINMATCH</div>
+
+<h1>Descubre tu rutina <span>perfecta</span></h1>
+
+<p>
+Analizamos tu tipo de piel, necesidades y presupuesto para recomendarte productos ideales en menos de 1 minuto.
+</p>
+
+<div class="botones">
+
+<a href="formulario.html" class="btn btn-principal">
+✨ Empezar test
+</a>
+
+<a href="estadisticas.html" class="btn btn-secundario">
+🔥 Rutinas populares
+</a>
+
+</div>
+
+</div>
+
+<div class="scroll-indicator">
+<a href="login.html"><- Volver atrás</a>
+</div>
+
+</section>
+<script>
+
+const btnDark = document.getElementById("toggleDark");
+
+btnDark.addEventListener("click", () => {
+
+document.body.classList.toggle("dark");
+
+if(document.body.classList.contains("dark")){
+localStorage.setItem("modo","oscuro");
+}else{
+localStorage.setItem("modo","claro");
+}
+
+});
+
+if(localStorage.getItem("modo") === "oscuro"){
+document.body.classList.add("dark");
+}
+</script>
+
+</body>
+</html>

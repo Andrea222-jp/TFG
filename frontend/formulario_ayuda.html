@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ayuda para descubrir tu piel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<style>
+
+*,
+*::before,
+*::after{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Manrope', sans-serif;
+margin:0;
+padding:30px 20px;
+color:#4a4a4a;
+background:none;
+display:block;
+will-change:transform;
+}
+
+
+/* COLLAGE PREMIUM */
+
+.collage-bg{
+position:fixed;
+inset:0;
+z-index:-2;
+
+display:grid;
+grid-template-columns:1fr 0.9fr;
+grid-template-rows:1fr 1fr;
+
+overflow:hidden;
+}
+
+.collage-bg div{
+overflow:hidden;
+}
+
+.left{
+grid-row:1 / span 2;
+}
+
+.collage-bg img{
+width:100%;
+height:100%;
+object-fit:cover;
+
+filter:
+brightness(.78)
+saturate(1.02);
+
+transition:.6s ease;
+}
+
+/* overlay suave */
+.collage-bg::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(255, 245, 248, 0.295);
+}
+
+/* OVERLAY SUAVE */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+
+/* 👇 un poco más opaco para efecto suave */
+background:rgba(255,255,255,0.08);
+
+z-index:-1;
+}
+/* FORM */
+form{
+margin:0 auto;
+max-width:760px;
+width:100%;
+
+padding:38px 28px;
+border-radius:34px;
+
+background:rgba(255,255,255,0.72);
+backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+box-shadow:
+0 25px 50px rgba(201,120,140,.12),
+0 10px 20px rgba(0,0,0,.04);
+}
+
+/* BADGE */
+.badge{
+display:inline-block;
+padding:10px 16px;
+border-radius:999px;
+background:white;
+color:#d97f98;
+font-size:.8rem;
+font-weight:800;
+margin-bottom:18px;
+}
+
+/* TITULO */
+h2{
+text-align:center;
+font-size:2.2rem;
+font-weight:800;
+margin-bottom:28px;
+color:#d57a8a;
+}
+
+/* TITULOS SECCION */
+.section-title{
+font-size:1rem;
+font-weight:800;
+margin-bottom:14px;
+color:#8a7077;
+}
+
+/* GRID */
+.option-grid,
+.problem-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+margin-bottom:28px;
+}
+
+/* OCULTAR INPUTS */
+.option-grid input,
+.problem-grid input{
+display:none;
+}
+
+/* CARDS */
+.option-card,
+.problem-card{
+min-height:58px;
+padding:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+
+border-radius:18px;
+background:white;
+border:1px solid #f2d8df;
+
+font-weight:700;
+transition:.25s ease;
+cursor:pointer;
+}
+
+/* SELECCIONADO */
+.option-grid input:checked + .option-card,
+.problem-grid input:checked + .problem-card{
+background:linear-gradient(135deg,#d97f98,#e79db2);
+color:white;
+border-color:#d97f98;
+transform:translateY(-2px);
+box-shadow:0 14px 28px rgba(201,120,140,.18);
+}
+
+/* BOTONES */
+.botones{
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+
+button,
+.btn-secundario{
+width:100%;
+padding:16px;
+border:none;
+border-radius:999px;
+font-size:1rem;
+font-weight:800;
+cursor:pointer;
+text-align:center;
+text-decoration:none;
+transition:.28s;
+display:block;
+}
+
+/* BOTON PRINCIPAL */
+.btn-principal{
+background:linear-gradient(135deg,#d97f98,#e79db2);
+color:white;
+box-shadow:0 16px 30px rgba(201,120,140,.24);
+position:relative;
+overflow:hidden;
+font-family: 'Manrope', sans-serif;;
+}
+
+/* BRILLO */
+.btn-principal::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255, 255, 255, 0.116),transparent);
+transition:.6s;
+}
+
+.btn-principal:hover::before{
+left:100%;
+}
+
+button:hover,
+.btn-secundario:hover{
+transform:translateY(-4px);
+}
+
+/* SECUNDARIO */
+.btn-secundario{
+background:white;
+color:#d97f98;
+border:1px solid #f2d8df;
+}
+
+/* RESULTADO IA */
+#resumen{
+width:100%;
+max-width:760px;
+
+margin:40px auto 0;
+
+padding:38px 28px;
+
+border-radius:34px;
+
+background:rgba(255,255,255,0.72);
+backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+box-shadow:
+0 25px 50px rgba(201,120,140,.12),
+0 10px 20px rgba(0,0,0,.04);
+
+display:none;
+}
+
+
+#resumen *{
+max-width:100% !important;
+}
+
+#resumen-text{
+width:100%;
+font-size:1.05rem;
+line-height:1.9;
+color:#5f5f5f;
+}
+
+#resumen h3{
+font-size:2.5rem;
+font-weight:800;
+margin-bottom:22px;
+color:#d57a8a;
+}
+
+#resumen h4{
+font-size:1.2rem;
+margin-top:20px;
+margin-bottom:10px;
+color:#d57a8a;
+}
+
+#resumen ul{
+padding-left:22px;
+margin-top:10px;
+}
+
+#resumen li{
+margin-bottom:10px;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:999px;
+font-size:1rem;
+font-weight:900;
+cursor:pointer;
+margin-top:10px;
+
+background:linear-gradient(135deg,#e79db2,#ffb6c7);
+color:white;
+
+box-shadow:
+0 12px 25px rgba(255,138,165,.35),
+0 4px 10px rgba(0,0,0,.05);
+
+position:relative;
+overflow:hidden;
+transition:.3s;
+}
+
+#resumen-text{
+font-size:1.03rem;
+line-height:1.9;
+color:#5e5e5e;
+}
+
+#resumen h3{
+font-size:2rem;
+margin-bottom:18px;
+color:#d57a8a;
+font-weight:800;
+}
+
+
+/* BRILLO */
+button::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.5),transparent);
+transition:.6s;
+}
+
+button:hover::before{
+left:100%;
+}
+
+button:hover{
+transform:translateY(-3px);
+}
+
+.btn-ir{
+width:94%;
+margin:10px auto 0;
+
+background:#e79db2; /* 👈 EXACTAMENTE IGUAL */
+color:white;
+
+padding:15px;
+border-radius:999px;
+text-align:center;
+text-decoration:none;
+
+font-size:1rem;
+font-weight:900;
+
+box-shadow:0 6px 12px rgba(213,122,138,.15);
+
+display:block;
+transition:.3s;
+}
+
+.btn-ir:hover{
+transform:translateY(-2px);
+background:#dc8ea5;
+}
+
+
+#resumen h4{
+  color:#d57a8a;
+  margin-top:12px;
+}
+
+#resumen ul{
+  padding-left:18px;
+}
+
+#resumen li{
+  margin-bottom:6px;
+}
+
+input{
+width:100%;
+padding:14px;
+border-radius:14px;
+border:1px solid #f2d8df;
+background:rgba(255,255,255,0.9);
+
+font-size:.95rem;
+font-weight:600;
+
+transition:.25s;
+}
+
+input:focus{
+border-color:#d57a8a;
+box-shadow:0 0 0 3px rgba(213,122,138,.15);
+outline:none;
+}
+
+.section-title{
+font-size:1rem;
+font-weight:800;
+margin-bottom:14px;
+color:#8a7077;
+}
+
+.option-grid,
+.problem-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+margin-bottom:28px;
+}
+
+.option-grid input,
+.problem-grid input{
+display:none;
+}
+
+.option-card,
+.problem-card{
+min-height:58px;
+padding:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+border-radius:18px;
+background:white;
+border:1px solid #f2d8df;
+font-weight:700;
+transition:.25s ease;
+}
+
+.option-grid input:checked + .option-card,
+.problem-grid input:checked + .problem-card{
+background:linear-gradient(135deg,#d97f98,#e79db2);
+color:white;
+border-color:#d97f98;
+transform:translateY(-2px);
+box-shadow:0 14px 28px rgba(201,120,140,.18);
+}
+
+
+/* ===== MODO OSCURO ===== */
+body.dark {
+  background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url("img/ayuda1.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+body.dark form {
+  background: rgba(28,28,28,.28);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow: 0 25px 50px rgba(0,0,0,.35), 0 10px 20px rgba(255,255,255,.03);
+}
+
+body.dark .badge,
+body.dark .section-title {
+  background: rgba(255,255,255,.08);
+  color: #ffb6c7;
+}
+
+body.dark .option-card,
+body.dark .problem-card {
+  background: #3a3a3a;
+  border: 1px solid #555;
+  color: white;
+}
+
+body.dark .option-grid input:checked + .option-card,
+body.dark .problem-grid input:checked + .problem-card {
+  background: linear-gradient(135deg,#d97f98,#e79db2);
+  color:white;
+  border-color:#d97f98;
+}
+
+/* ===== BOTONES MODO OSCURO IGUAL QUE CLARO ===== */
+body.dark .btn-principal,
+body.dark .btn-secundario,
+body.dark .btn-ir {
+  background: linear-gradient(135deg,#e79db2,#ffb6c7); 
+  color: white;
+  border: none;
+  box-shadow:
+    0 12px 25px rgba(255,138,165,.35),
+    0 4px 10px rgba(0,0,0,.05);
+}
+
+body.dark .btn-principal:hover,
+body.dark .btn-secundario:hover,
+body.dark .btn-ir:hover {
+  background: #dc8ea5; 
+  transform: translateY(-2px);
+}
+
+/* Botón de luna centrado */
+.dark-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+#toggleDark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  color: black;
+  font-size: 1.3rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+
+#toggleDark:hover {
+  transform: scale(1.1);
+}
+
+body.dark #toggleDark {
+  background: white;
+  color: black;
+  border: 1px solid rgba(255,255,255,.16);
+}
+
+</style>
+</head>
+
+<body>
+
+
+  <div class="collage-bg">
+
+  <div class="left">
+    <img src="img/ayuda1.webp" alt="">
+  </div>
+
+  <div class="top">
+    <img src="img/ayuda2.webp" alt="">
+  </div>
+
+  <div class="bottom">
+    <img src="img/ayuda3.webp" alt="">
+  </div>
+
+</div>
+
+</div>
+
+<div class="dark-toggle">
+  <button id="toggleDark">🌙</button>
+</div>
+
+<form id="formAyuda">
+
+<div class="badge">✨ TEST DE PIEL</div>
+
+<h2>Descubre tu tipo de piel</h2>
+
+<!-- TIPO PIEL -->
+<div class="section-title">Tipo de piel</div>
+
+<div class="option-grid">
+<label><input type="radio" name="tipoPiel" value="seca"><div class="option-card">Seca</div></label>
+<label><input type="radio" name="tipoPiel" value="mixta"><div class="option-card">Mixta</div></label>
+<label><input type="radio" name="tipoPiel" value="grasa"><div class="option-card">Grasa</div></label>
+<label><input type="radio" name="tipoPiel" value="sensible"><div class="option-card">Sensible</div></label>
+<label><input type="radio" name="tipoPiel" value="normal"><div class="option-card">Normal</div></label>
+<label><input type="radio" name="tipoPiel" value="madura"><div class="option-card">Madura</div></label>
+</div>
+
+<!-- SENSIBILIDAD -->
+<div class="section-title">Sensibilidad</div>
+
+<div class="option-grid">
+<label><input type="radio" name="sensibilidad" value="alta"><div class="option-card">Alta</div></label>
+<label><input type="radio" name="sensibilidad" value="media"><div class="option-card">Media</div></label>
+<label><input type="radio" name="sensibilidad" value="baja"><div class="option-card">Baja</div></label>
+</div>
+
+<!-- PROBLEMAS -->
+<div class="section-title">Problemas principales</div>
+
+<div class="problem-grid">
+<label><input type="checkbox" name="problemas" value="acne"><div class="problem-card">Acné</div></label>
+<label><input type="checkbox" name="problemas" value="rojeces"><div class="problem-card">Rojeces</div></label>
+<label><input type="checkbox" name="problemas" value="deshidratacion"><div class="problem-card">Deshidratación</div></label>
+<label><input type="checkbox" name="problemas" value="arrugas"><div class="problem-card">Arrugas</div></label>
+<label><input type="checkbox" name="problemas" value="manchas"><div class="problem-card">Manchas</div></label>
+<label><input type="checkbox" name="problemas" value="sensibilidad"><div class="problem-card">Sensibilidad</div></label>
+<label><input type="checkbox" name="problemas" value="poros"><div class="problem-card">Poros</div></label>
+<label><input type="checkbox" name="problemas" value="congestion"><div class="problem-card">Congestión</div></label>
+<label><input type="checkbox" name="problemas" value="luminosidad"><div class="problem-card">Apagada</div></label>
+<label><input type="checkbox" name="problemas" value="ninguno"><div class="problem-card">Ninguno</div></label>
+</div>
+
+<!-- BRILLO -->
+<div class="section-title">Brillo</div>
+
+<div class="option-grid">
+<label><input type="radio" name="brillo" value="alto"><div class="option-card">Mucho</div></label>
+<label><input type="radio" name="brillo" value="medio"><div class="option-card">Zona T</div></label>
+<label><input type="radio" name="brillo" value="bajo"><div class="option-card">Nada</div></label>
+</div>
+
+<!-- TIRANTEZ -->
+<div class="section-title">Tirantez después de lavarte la cara</div>
+
+<div class="option-grid">
+<label><input type="radio" name="tirantez" value="si"><div class="option-card">Sí</div></label>
+<label><input type="radio" name="tirantez" value="no"><div class="option-card">No</div></label>
+</div>
+
+<!-- BOTONES -->
+<div class="botones">
+<button type="submit" class="btn-principal">Ver resultado</button>
+<a href="formulario.html" class="btn-secundario">Ir al formulario</a>
+</div>
+
+</form>
+
+<div id="resumen">
+  <h3>Tu diagnóstico</h3>
+  <p id="resumen-text"></p>
+</div>
+
+<script>
+document.getElementById('formAyuda').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+
+  const tipoPiel = form.querySelector('input[name="tipoPiel"]:checked')?.value;
+  const sensibilidad = form.querySelector('input[name="sensibilidad"]:checked')?.value;
+  const brillo = form.querySelector('input[name="brillo"]:checked')?.value;
+  const tirantez = form.querySelector('input[name="tirantez"]:checked')?.value;
+
+  const problemas = Array.from(
+    form.querySelectorAll('input[name="problemas"]:checked')
+  ).map(p => p.value);
+
+  const resumenBox = document.getElementById("resumen");
+  const texto = document.getElementById("resumen-text");
+
+  // 🔄 loading bonito
+  resumenBox.style.display = "block";
+  texto.innerHTML = "🤖 Analizando tu piel...";
+
+  fetch("http://localhost:3000/analizar-piel-ia", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      tipoPiel,
+      sensibilidad,
+      brillo,
+      tirantez,
+      problemas
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    let limpio = data.resumen
+  .replace(/```html/g, "")
+  .replace(/```/g, "");
+
+texto.innerHTML = limpio;
+  })
+  .catch(err => {
+    console.error(err);
+    texto.innerHTML = "Error analizando 😢";
+  });
+});
+</script>
+
+<script>
+const btnDark = document.getElementById("toggleDark");
+
+btnDark.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+    localStorage.setItem("modo","oscuro");
+  } else {
+    localStorage.setItem("modo","claro");
+  }
+});
+
+// Mantener modo al recargar
+if(localStorage.getItem("modo") === "oscuro"){
+  document.body.classList.add("dark");
+}
+</script>
+
+
+</body>
+</html>
