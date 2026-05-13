@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inicio - Proyecto Skincare</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fff8f6;
+      color: #4a4a4a;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      width: 100%;
+      height: 40vh;
+      background: url("img/SkinMatch.png") center/cover no-repeat;
+    }
+
+    /* ===== CONTENIDO ===== */
+    .contenido {
+      max-width: 800px;
+      margin: 50px auto;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .contenido h2 {
+      color: #d57a8a;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .contenido p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    /* ===== BOTONES ===== */
+    .botones {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      background: #d57a8a;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      width: 220px;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: #b75d68;
+      transform: scale(1.05);
+    }
+
+    .btn-secundario {
+      background: #f1b9c9;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      width: 220px;
+      text-align: center;
+    }
+
+    .btn-secundario:hover {
+      background: #d57a8a;
+      transform: scale(1.05);
+    }
+
+    /* ===== CARRUSEL ===== */
+    .carousel {
+      overflow: hidden;
+      width: 100%;
+      margin-top: 30px;
+      border-radius: 15px;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 20px;
+      animation: scroll 20s linear infinite;
+    }
+
+    .carousel img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header"></div>
+
+  <!-- CONTENIDO -->
+  <div class="contenido">
+
+    <h2>Descubre tu rutina perfecta</h2>
+
+    <p>
+      Nuestra aplicación analiza tu tipo de piel, tus necesidades y tu presupuesto 
+      para recomendarte una rutina personalizada con productos adaptados a ti.
+    </p>
+
+    <p>
+      El skincare es clave para mantener una piel sana, luminosa y equilibrada. 
+      Con SkinMatch, lo hacemos fácil y rápido.
+    </p>
+
+    <!-- 💥 BOTONES -->
+    <div class="botones">
+      <a href="login.html" class="btn">Empezar</a>
+      <a href="estadisticas.html" class="btn-secundario">🔥 Rutinas populares</a>
+    </div>
+
+    <!-- 💥 CARRUSEL -->
+    <div class="carousel">
+      <div class="carousel-track">
+
+        <img src="img/dos.jpg">
+        <img src="img/uno.jpg">
+        <img src="img/tres.jpg">
+        <img src="img/cuatro.jpg">
+
+        <!-- duplicadas para efecto infinito -->
+        <img src="img/dos.jpg">
+        <img src="img/uno.jpg">
+        <img src="img/tres.jpg">
+        <img src="img/cuatro.jpg">
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
